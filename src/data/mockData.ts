@@ -2,14 +2,14 @@ import { Product, Category, Store } from "@/types";
 
 // Mock Categories
 export const mockCategories: Category[] = [
-  { id: "1", name: "Groceries", icon: "🛒", image: "/placeholder.svg", product_count: 1250 },
-  { id: "2", name: "Fruits & Vegetables", icon: "🥬", image: "/placeholder.svg", product_count: 450 },
-  { id: "3", name: "Dairy & Eggs", icon: "🥛", image: "/placeholder.svg", product_count: 180 },
-  { id: "4", name: "Bakery", icon: "🍞", image: "/placeholder.svg", product_count: 95 },
-  { id: "5", name: "Snacks", icon: "🍿", image: "/placeholder.svg", product_count: 320 },
-  { id: "6", name: "Beverages", icon: "🥤", image: "/placeholder.svg", product_count: 275 },
-  { id: "7", name: "Personal Care", icon: "🧴", image: "/placeholder.svg", product_count: 410 },
-  { id: "8", name: "Household", icon: "🏠", image: "/placeholder.svg", product_count: 380 },
+  { id: "1", name: "Groceries", icon: "🛒", image: "/images/groceries.png", product_count: 1250 },
+  { id: "2", name: "Fruits & Vegetables", icon: "🥬", image: "/images/fruits-vegetables.png", product_count: 450 },
+  { id: "3", name: "Dairy & Eggs", icon: "🥛", image: "/images/dairy-eggs.png", product_count: 180 },
+  { id: "4", name: "Bakery", icon: "🍞", image: "/images/bakery.png", product_count: 95 },
+  { id: "5", name: "Snacks", icon: "🍿", image: "/images/snacks.png", product_count: 320 },
+  { id: "6", name: "Beverages", icon: "🥤", image: "/images/beverages.png", product_count: 275 },
+  { id: "7", name: "Personal Care", icon: "🧴", image: "/images/personal-care.png", product_count: 410 },
+  { id: "8", name: "Household", icon: "🏠", image: "/images/household.png", product_count: 380 },
 ];
 
 // Mock Stores
@@ -64,7 +64,7 @@ export const mockProducts: Product[] = [
     price: 49,
     original_price: 65,
     discount_percentage: 25,
-    images: ["/placeholder.svg"],
+    images: ["/images/bananas.png"],
     rating: 4.6,
     review_count: 128,
     quantity_available: 50,
@@ -86,7 +86,7 @@ export const mockProducts: Product[] = [
     price: 275,
     original_price: null,
     discount_percentage: null,
-    images: ["/placeholder.svg"],
+    images: ["/images/butter.png"],
     rating: 4.8,
     review_count: 342,
     quantity_available: 25,
@@ -108,7 +108,7 @@ export const mockProducts: Product[] = [
     price: 28,
     original_price: 32,
     discount_percentage: 12,
-    images: ["/placeholder.svg"],
+    images: ["/images/salt.png"],
     rating: 4.9,
     review_count: 567,
     quantity_available: 100,
@@ -130,7 +130,7 @@ export const mockProducts: Product[] = [
     price: 45,
     original_price: 50,
     discount_percentage: 10,
-    images: ["/placeholder.svg"],
+    images: ["/images/cookies.png"],
     rating: 4.4,
     review_count: 198,
     quantity_available: 75,
@@ -152,7 +152,7 @@ export const mockProducts: Product[] = [
     price: 89,
     original_price: 99,
     discount_percentage: 10,
-    images: ["/placeholder.svg"],
+    images: ["/images/eggs.png"],
     rating: 4.7,
     review_count: 256,
     quantity_available: 40,
@@ -174,7 +174,7 @@ export const mockProducts: Product[] = [
     price: 199,
     original_price: 249,
     discount_percentage: 20,
-    images: ["/placeholder.svg"],
+    images: ["/images/detergent.png"],
     rating: 4.5,
     review_count: 423,
     quantity_available: 30,
@@ -196,7 +196,7 @@ export const mockProducts: Product[] = [
     price: 95,
     original_price: null,
     discount_percentage: null,
-    images: ["/placeholder.svg"],
+    images: ["/images/coke.png"],
     rating: 4.3,
     review_count: 189,
     quantity_available: 60,
@@ -218,7 +218,7 @@ export const mockProducts: Product[] = [
     price: 45,
     original_price: null,
     discount_percentage: null,
-    images: ["/placeholder.svg"],
+    images: ["/images/bread.png"],
     rating: 4.6,
     review_count: 145,
     quantity_available: 20,
@@ -240,8 +240,8 @@ export const getProductsByCategory = (categoryId: string): Product[] => {
 
 export const searchProducts = (query: string): Product[] => {
   const lowerQuery = query.toLowerCase();
-  return mockProducts.filter(p => 
-    p.name.toLowerCase().includes(lowerQuery) || 
+  return mockProducts.filter(p =>
+    p.name.toLowerCase().includes(lowerQuery) ||
     p.category_name.toLowerCase().includes(lowerQuery)
   );
 };
