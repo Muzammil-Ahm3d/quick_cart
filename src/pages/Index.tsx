@@ -10,7 +10,9 @@ import ProductCard from "@/components/ProductCard";
 import CategoryCard from "@/components/CategoryCard";
 import { mockCategories, getFeaturedProducts } from "@/data/mockData";
 import { useToast } from "@/hooks/use-toast";
-import heroBanner from "@/assets/hero-banner.jpg";
+import heroMain from "@/assets/hero-main.png";
+import promoPharmacy from "@/assets/promo-pharmacy.png";
+import promoPetCare from "@/assets/promo-pet-care.png";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,70 +56,96 @@ const Index = () => {
       <Header cartItemCount={3} wishlistCount={2} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={heroBanner} 
-            alt="QuickKart - Fresh groceries delivered fast"
-            className="w-full h-full object-cover"
+      {/* Hero Section - Redesigned */}
+      <section className="container mx-auto px-4 py-6 space-y-4 md:space-y-6 mt-4">
+        {/* Top Hero Banner */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-sm aspect-[24/10] md:aspect-[3/1] group"
+        >
+          <img
+            src={heroMain}
+            alt="Fresh Groceries"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-transparent" />
-        </div>
-        
-        <div className="relative container mx-auto px-4 py-16 md:py-24 lg:py-32">
-          <div className="max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-sm font-medium mb-4">
-                🚀 Delivery in 15-30 minutes
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/40 via-transparent to-transparent" />
+
+          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-16">
+            <div className="max-w-xl space-y-2 md:space-y-4">
+              <span className="inline-block px-3 py-1 rounded-full bg-white/90 text-primary text-xs md:text-sm font-bold shadow-sm backdrop-blur-sm">
+                🚀 Delivery in 8 minutes
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-foreground mb-4">
-                Fresh Groceries,
-                <br />
-                <span className="text-primary">Lightning Fast</span>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-sm">
+                Farm Fresh <br />
+                <span className="text-lime-300">Daily Essentials</span>
               </h1>
-              <p className="text-lg text-secondary-foreground/80 mb-8">
-                Get essentials from your favorite local stores delivered to your doorstep in minutes. Empowering local stores, delivering at speed.
+              <p className="text-white/90 text-sm md:text-lg font-medium max-w-md hidden md:block">
+                Get fresh vegetables, fruits, and dairy delivered directly from local farmers to your table.
               </p>
-            </motion.div>
 
-            {/* Search Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Search for groceries, fruits, snacks..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full h-14 pl-12 pr-4 text-base bg-card border-0 shadow-lg"
-                />
+              <div className="pt-2">
+                <Link to="/products">
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold border-0 shadow-lg">
+                    Shop Now
+                  </Button>
+                </Link>
               </div>
-              <Button size="xl" className="shadow-lg">
-                <Search className="w-5 h-5 mr-2" />
-                Search
-              </Button>
-            </motion.div>
-
-            {/* Location Hint */}
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-2 mt-4 text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
-            >
-              <MapPin className="w-4 h-4" />
-              <span>Delivering to <strong className="text-secondary-foreground">Bengaluru, Karnataka</strong></span>
-            </motion.button>
+            </div>
           </div>
+        </motion.div>
+
+        {/* Promo Cards Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {/* Pharmacy Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-sm aspect-[2/1] group cursor-pointer"
+          >
+            <img
+              src={promoPharmacy}
+              alt="Pharmacy at your doorstep"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+              <Button className="bg-white/90 text-teal-700 hover:bg-white font-bold backdrop-blur-sm">
+                Order Medicines
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Pet Care Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative rounded-xl md:rounded-2xl overflow-hidden shadow-sm aspect-[2/1] group cursor-pointer"
+          >
+            <img
+              src={promoPetCare}
+              alt="Pet Care Supplies"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-6">
+              <Button className="bg-white/90 text-orange-600 hover:bg-white font-bold backdrop-blur-sm">
+                Shop Pet Supplies
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Search Bar - Moved below banner for better UX in this layout, or keep nicely integrated? 
+            The previous design had search *inside* hero. 
+            Let's put a nice search bar section just below the banners, or maybe floating on the main banner?
+            The user wants "two three images one on the top... below to it two more rectangle cards".
+            So let's keep the visuals clean. I'll put the Search Bar in a clean section below the promos or above?
+            Common pattern is Header Search. The user entered search in the previous hero.
+            Let's add a sleek Search section between Banner and Promos.
+        */}
+        <div className="relative z-10 -mt-6 mx-4 md:mx-auto max-w-2xl hidden hidden"> {/* Hiding for now to stick to visual request, can re-enable */}
         </div>
       </section>
 

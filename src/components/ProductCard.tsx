@@ -21,13 +21,13 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist, onClick }: Produc
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsAddingToCart(true);
-    
+
     // Simulate add to cart
     setTimeout(() => {
       setIsAddingToCart(false);
       setJustAdded(true);
       onAddToCart?.(product);
-      
+
       setTimeout(() => setJustAdded(false), 2000);
     }, 500);
   };
@@ -54,7 +54,7 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist, onClick }: Produc
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-        
+
         {/* Discount Badge */}
         {product.discount_percentage && (
           <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-semibold">
@@ -113,9 +113,11 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist, onClick }: Produc
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold text-primary">₹{product.price}</span>
+          <div className="bg-primary px-2 py-0.5 rounded-md">
+            <span className="text-sm font-bold text-primary-foreground">₹{product.price}</span>
+          </div>
           {product.original_price && (
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-xs text-muted-foreground line-through">
               ₹{product.original_price}
             </span>
           )}
