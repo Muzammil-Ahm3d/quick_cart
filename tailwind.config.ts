@@ -73,6 +73,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        cta: "hsl(var(--cta))",
+        "cta-foreground": "hsl(var(--cta-foreground))",
+        "cta-hover": "hsl(var(--cta-hover))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

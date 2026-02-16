@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +8,7 @@
    Colors: Vibrant Orange + Navy Blue
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 
 @layer base {
   :root {
@@ -24,6 +25,12 @@
     --secondary-light: 201 60% 90%;
     --secondary-dark: 207 100% 15%;
     --secondary-hover: 207 100% 20%;
+
+    /* CTA - Vibrant Orange */
+    --cta: 24 95% 53%;
+    --cta-foreground: 0 0% 100%;
+    --cta-hover: 24 95% 48%;
+
 
     /* Success - Teal Green */
     --success: 163 96% 43%;
@@ -111,6 +118,11 @@
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 69%;
+
+    --cta: 24 95% 53%;
+    --cta-foreground: 0 0% 100%;
+    --cta-hover: 24 95% 48%;
+
 
     --accent: 0 0% 18%;
     --accent-foreground: 142 71% 45%;

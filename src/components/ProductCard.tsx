@@ -125,7 +125,7 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist, onClick }: Produc
 
         {/* Add to Cart Button */}
         <Button
-          variant={justAdded ? "success" : "default"}
+          variant={justAdded ? "success" : "cta"}
           size="sm"
           fullWidth
           disabled={isOutOfStock || isAddingToCart}

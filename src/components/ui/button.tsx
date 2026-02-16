@@ -16,6 +16,7 @@ const buttonVariants = cva(
         ghost: "text-foreground hover:bg-accent hover:text-accent-foreground active:scale-[0.98]",
         link: "text-primary underline-offset-4 hover:underline",
         success: "bg-success text-success-foreground shadow-sm hover:bg-success/90 hover:shadow-md hover:scale-[1.02] active:scale-[0.98]",
+        cta: "bg-cta text-cta-foreground shadow-sm hover:bg-cta-hover hover:shadow-md hover:scale-[1.02] active:scale-[0.98]",
         hero: "bg-card text-foreground shadow-lg border border-border hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]",
       },
       size: {
@@ -42,7 +43,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -52,11 +53,11 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, fullWidth, asChild = false, isLoading = false, leftIcon, rightIcon, children, disabled, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
-    
+
     return (
-      <Comp 
-        className={cn(buttonVariants({ variant, size, fullWidth, className }))} 
-        ref={ref} 
+      <Comp
+        className={cn(buttonVariants({ variant, size, fullWidth, className }))}
+        ref={ref}
         disabled={disabled || isLoading}
         {...props}
       >
