@@ -25,6 +25,15 @@ import AdminBanners from "./pages/admin/AdminBanners";
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
 import AdminOrders from "./pages/admin/AdminOrders";
 
+// Vendor imports
+import VendorLayout from "./components/vendor/VendorLayout";
+import VendorGuard from "./components/vendor/VendorGuard";
+import VendorLogin from "./pages/vendor/VendorLogin";
+import VendorDashboard from "./pages/vendor/VendorDashboard";
+import VendorProducts from "./pages/vendor/VendorProducts";
+import VendorProductForm from "./pages/vendor/VendorProductForm";
+import VendorOrders from "./pages/vendor/VendorOrders";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -63,6 +72,22 @@ const App = () => (
             <Route path="banners" element={<AdminBanners />} />
             <Route path="settings" element={<AdminSiteSettings />} />
             <Route path="orders" element={<AdminOrders />} />
+          </Route>
+
+          {/* Vendor Routes */}
+          <Route path="/vendor/login" element={<VendorLogin />} />
+          <Route
+            path="/vendor"
+            element={
+              <VendorGuard>
+                <VendorLayout />
+              </VendorGuard>
+            }
+          >
+            <Route index element={<VendorDashboard />} />
+            <Route path="products" element={<VendorProducts />} />
+            <Route path="products/new" element={<VendorProductForm />} />
+            <Route path="orders" element={<VendorOrders />} />
           </Route>
 
           {/* Catch-all */}

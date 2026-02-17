@@ -10,8 +10,27 @@ const KEYS = {
     orders: "qk_orders",
     siteSettings: "qk_site_settings",
     adminSession: "qk_admin_session",
+    vendorSession: "qk_vendor_session",
+    vendorNotifications: "qk_vendor_notifications",
     initialized: "qk_initialized",
 } as const;
+
+// ─── Vendor Types ───────────────────────────────────────────
+export interface VendorSession {
+    storeId: string;
+    storeName: string;
+}
+
+export interface VendorNotification {
+    id: string;
+    storeId: string;
+    type: "new_order" | "order_update" | "info";
+    title: string;
+    message: string;
+    orderId?: string;
+    isRead: boolean;
+    createdAt: string;
+}
 
 // ─── Generic Helpers ────────────────────────────────────────
 function getItem<T>(key: string): T | null {
@@ -310,6 +329,114 @@ function generateSampleOrders(): Order[] {
             delivered_at: null,
         },
     ];
+}
+
+// ─── Vendor Auth ────────────────────────────────────────────
+export function getVendorSession(): VendorSession | null {
+    return getItem<VendorSession>(KEYS.vendorSession);
+}
+
+export function isVendorLoggedIn(): boolean {
+    return getVendorSession() !== null;
+}
+
+export function loginVendor(storeId: string, password: string): boolean {
+    if (password !== "vendor123") return false;
+    const store = getStores().find((s) => s.id === storeId);
+    if (!store) return false;
+    setItem<VendorSession>(KEYS.vendorSession, {
+        storeId: store.id,
+        storeName: store.name,
+    });
+    return true;
+}
+
+export function logoutVendor(): void {
+    localStorage.removeItem(KEYS.vendorSession);
+}
+
+// ─── Vendor Scoped Queries ──────────────────────────────────
+export function getProductsByStore(storeId: string): Product[] {
+    return getProducts().filter((p) => p.store_id === storeId);
+}
+
+export function getOrdersByStore(storeId: string): Order[] {
+    return getOrders().filter((o) =>
+        o.items.some((item) => item.store_id === storeId)
+    );
+}
+
+// ─── Vendor Notifications ───────────────────────────────────
+export function getVendorNotifications(storeId: string): VendorNotification[] {
+    const all = getItem<VendorNotification[]>(KEYS.vendorNotifications) ?? [];
+    return all
+        .filter((n) => n.storeId === storeId)
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+}
+
+export function addVendorNotification(
+    notification: Omit<VendorNotification, "id" | "isRead" | "createdAt">
+): VendorNotification {
+    const all = getItem<VendorNotification[]>(KEYS.vendorNotifications) ?? [];
+    const newNotif: VendorNotification = {
+        ...notification,
+        id: generateId(),
+        isRead: false,
+        createdAt: new Date().toISOString(),
+    };
+    all.push(newNotif);
+    setItem(KEYS.vendorNotifications, all);
+    return newNotif;
+}
+
+export function markNotificationRead(id: string): void {
+    const all = getItem<VendorNotification[]>(KEYS.vendorNotifications) ?? [];
+    const updated = all.map((n) => (n.id === id ? { ...n, isRead: true } : n));
+    setItem(KEYS.vendorNotifications, updated);
+}
+
+export function markAllNotificationsRead(storeId: string): void {
+    const all = getItem<VendorNotification[]>(KEYS.vendorNotifications) ?? [];
+    const updated = all.map((n) =>
+        n.storeId === storeId ? { ...n, isRead: true } : n
+    );
+    setItem(KEYS.vendorNotifications, updated);
+}
+
+export function clearVendorNotifications(storeId: string): void {
+    const all = getItem<VendorNotification[]>(KEYS.vendorNotifications) ?? [];
+    setItem(
+        KEYS.vendorNotifications,
+        all.filter((n) => n.storeId !== storeId)
+    );
+}
+
+// Helper: fire notifications for each vendor whose items are in an order
+export function notifyVendorsForOrder(order: Order): void {
+    // Group items by store
+    const storeGroups = new Map<string, { storeName: string; itemCount: number; total: number }>();
+    for (const item of order.items) {
+        const existing = storeGroups.get(item.store_id);
+        if (existing) {
+            existing.itemCount += item.quantity;
+            existing.total += item.total;
+        } else {
+            storeGroups.set(item.store_id, {
+                storeName: item.store_name,
+                itemCount: item.quantity,
+                total: item.total,
+            });
+        }
+    }
+    storeGroups.forEach((data, storeId) => {
+        addVendorNotification({
+            storeId,
+            type: "new_order",
+            title: "🛒 New Order Received!",
+            message: `Order #${order.id} — ${data.itemCount} item(s) worth ₹${data.total}`,
+            orderId: order.id,
+        });
+    });
 }
 
 // ─── Utility: Generate Unique ID ────────────────────────────
