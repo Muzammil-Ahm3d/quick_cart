@@ -24,6 +24,8 @@ export interface Product {
 
 export interface Store {
   id: string;
+  vendorId: string;
+  password: string;
   name: string;
   logo: string | null;
   distance_km: number;
@@ -33,6 +35,9 @@ export interface Store {
   is_open: boolean;
   category: string;
   description?: string;
+  ownerName?: string;
+  email?: string;
+  phone?: string;
 }
 
 export interface CartItem {

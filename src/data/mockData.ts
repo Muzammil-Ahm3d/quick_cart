@@ -21,17 +21,20 @@ const seedCategories: Category[] = [
 
 const seedStores: Store[] = [
   {
-    id: "store1", name: "Fresh Mart Kirana", logo: null, distance_km: 0.8,
+    id: "store1", vendorId: "QK-10001", password: "vendor123",
+    name: "Fresh Mart Kirana", logo: null, distance_km: 0.8,
     rating: 4.5, review_count: 234, opening_hours: { monday: "08:00-22:00", tuesday: "08:00-22:00" },
     is_open: true, category: "Kirana Store", description: "Your neighborhood grocery store",
   },
   {
-    id: "store2", name: "Green Valley Organics", logo: null, distance_km: 1.2,
+    id: "store2", vendorId: "QK-10002", password: "vendor123",
+    name: "Green Valley Organics", logo: null, distance_km: 1.2,
     rating: 4.8, review_count: 156, opening_hours: { monday: "09:00-21:00", tuesday: "09:00-21:00" },
     is_open: true, category: "Organic Store",
   },
   {
-    id: "store3", name: "Daily Needs Express", logo: null, distance_km: 0.5,
+    id: "store3", vendorId: "QK-10003", password: "vendor123",
+    name: "Daily Needs Express", logo: null, distance_km: 0.5,
     rating: 4.2, review_count: 89, opening_hours: { monday: "07:00-23:00", tuesday: "07:00-23:00" },
     is_open: true, category: "Convenience Store",
   },

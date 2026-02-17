@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Lock, Store, Eye, EyeOff } from "lucide-react";
+import { Lock, Store, Eye, EyeOff, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { getStores, loginVendor } from "@/lib/store";
+import { loginVendor } from "@/lib/store";
 import { useToast } from "@/hooks/use-toast";
 
 const VendorLogin = () => {
-    const stores = getStores();
-    const [storeId, setStoreId] = useState(stores[0]?.id || "");
+    const [vendorId, setVendorId] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -18,15 +17,19 @@ const VendorLogin = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!vendorId.trim()) {
+            toast({ title: "Vendor ID required", description: "Please enter your vendor ID.", variant: "destructive" });
+            return;
+        }
         setLoading(true);
         await new Promise((r) => setTimeout(r, 400));
 
-        const success = loginVendor(storeId, password);
+        const success = loginVendor(vendorId.trim().toUpperCase(), password);
         if (success) {
             toast({ title: "Welcome back!", description: "You're now logged in." });
             navigate("/vendor");
         } else {
-            toast({ title: "Login failed", description: "Invalid credentials.", variant: "destructive" });
+            toast({ title: "Login failed", description: "Invalid vendor ID or password.", variant: "destructive" });
         }
         setLoading(false);
     };
@@ -46,25 +49,28 @@ const VendorLogin = () => {
                         </div>
                         <h1 className="text-2xl font-bold text-foreground">Vendor Portal</h1>
                         <p className="text-sm text-muted-foreground mt-1">
-                            Log in to manage your store
+                            Log in with your Vendor ID to manage your store
                         </p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        {/* Store Picker */}
+                        {/* Vendor ID */}
                         <div className="space-y-1.5">
-                            <label className="text-sm font-medium">Select Store</label>
-                            <select
-                                value={storeId}
-                                onChange={(e) => setStoreId(e.target.value)}
-                                className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm"
-                            >
-                                {stores.map((s) => (
-                                    <option key={s.id} value={s.id}>
-                                        {s.name}
-                                    </option>
-                                ))}
-                            </select>
+                            <label className="text-sm font-medium">Vendor ID</label>
+                            <div className="relative">
+                                <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                                <Input
+                                    type="text"
+                                    placeholder="e.g. QK-10001"
+                                    value={vendorId}
+                                    onChange={(e) => setVendorId(e.target.value.toUpperCase())}
+                                    className="pl-10 font-mono tracking-wider"
+                                    required
+                                />
+                            </div>
+                            <p className="text-xs text-muted-foreground">
+                                You received this ID when you enrolled as a seller
+                            </p>
                         </div>
 
                         {/* Password */}
@@ -93,11 +99,15 @@ const VendorLogin = () => {
                         <Button type="submit" className="w-full" disabled={loading}>
                             {loading ? "Signing in..." : "Sign In"}
                         </Button>
-
-                        <p className="text-xs text-center text-muted-foreground">
-                            Default password: <span className="font-mono bg-muted px-1.5 py-0.5 rounded">vendor123</span>
-                        </p>
                     </form>
+
+                    {/* Register link */}
+                    <div className="mt-6 text-center text-sm text-muted-foreground">
+                        Don't have a Vendor ID?{" "}
+                        <Link to="/become-seller" className="text-primary font-medium hover:underline">
+                            Register as a Seller
+                        </Link>
+                    </div>
                 </div>
             </motion.div>
         </div>

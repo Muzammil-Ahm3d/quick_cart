@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { 
-  Store, User, Mail, Phone, FileText, MapPin, Clock, Building, 
+import { useNavigate, Link } from "react-router-dom";
+import {
+  Store, User, Mail, Phone, FileText, MapPin, Clock, Building,
   CreditCard, Shield, Zap, TrendingUp, Users, Check, ChevronRight,
-  Upload, X, AlertCircle
+  Upload, X, AlertCircle, Copy, PartyPopper
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { registerVendor } from "@/lib/store";
 
 // Category data
 const categories = [
@@ -36,6 +37,8 @@ const BecomeSeller = () => {
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [generatedVendorId, setGeneratedVendorId] = useState("");
+  const [vendorPassword, setVendorPassword] = useState("");
 
   // Step 1: Business Details
   const [storeName, setStoreName] = useState("");
@@ -128,7 +131,7 @@ const BecomeSeller = () => {
   const handleIfscChange = (value: string) => {
     const formatted = value.toUpperCase().slice(0, 11);
     setIfscCode(formatted);
-    
+
     // Auto-fill bank details (mock)
     if (formatted.length === 11 && /^[A-Z]{4}0[A-Z0-9]{6}$/.test(formatted)) {
       setBankName("HDFC Bank");
@@ -138,17 +141,32 @@ const BecomeSeller = () => {
 
   const handleSubmit = async () => {
     if (!validateStep(4)) return;
+    if (!vendorPassword || vendorPassword.length < 6) {
+      setErrors({ ...errors, vendorPassword: "Password must be at least 6 characters" });
+      return;
+    }
 
     setIsSubmitting(true);
-    
-    // Simulate API call
+
+    // Register the vendor in localStorage
     setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Registration submitted successfully!",
-        description: "Your application is being reviewed. You'll receive an email confirmation within 24 hours.",
+      const categoryName = useCustomCategory
+        ? customCategoryName
+        : categories.find((c) => c.id === selectedCategory)?.name || "General";
+
+      const result = registerVendor({
+        name: storeName,
+        category: categoryName,
+        description: storeDescription,
+        ownerName: ownerName,
+        email: storeEmail,
+        phone: storePhone,
+        password: vendorPassword,
       });
-      setTimeout(() => navigate("/"), 2000);
+
+      setGeneratedVendorId(result.vendorId);
+      setIsSubmitting(false);
+      setCurrentStep(5); // Go to success screen
     }, 2000);
   };
 
@@ -197,8 +215,8 @@ const BecomeSeller = () => {
                   <div className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors",
                     currentStep > index + 1 ? "bg-success text-white" :
-                    currentStep === index + 1 ? "bg-primary text-white" :
-                    "bg-muted text-muted-foreground"
+                      currentStep === index + 1 ? "bg-primary text-white" :
+                        "bg-muted text-muted-foreground"
                   )}>
                     {currentStep > index + 1 ? <Check className="w-4 h-4" /> : index + 1}
                   </div>
@@ -689,6 +707,25 @@ const BecomeSeller = () => {
                   </div>
                 </div>
 
+                {/* Create Password */}
+                <div className="space-y-4 pt-4 border-t">
+                  <h3 className="font-medium flex items-center gap-2">
+                    <Shield className="w-4 h-4" />
+                    Set Your Login Password
+                  </h3>
+                  <div className="space-y-2">
+                    <Label>Password *</Label>
+                    <Input
+                      type="password"
+                      placeholder="Minimum 6 characters"
+                      value={vendorPassword}
+                      onChange={(e) => setVendorPassword(e.target.value)}
+                    />
+                    {errors.vendorPassword && <p className="text-sm text-destructive">{errors.vendorPassword}</p>}
+                    <p className="text-xs text-muted-foreground">This will be your password to log in to the Vendor Portal</p>
+                  </div>
+                </div>
+
                 {/* Terms */}
                 <div className="flex items-start space-x-3">
                   <Checkbox
@@ -714,6 +751,61 @@ const BecomeSeller = () => {
                   <Button fullWidth size="lg" onClick={handleSubmit} isLoading={isSubmitting}>
                     Complete Registration
                   </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Step 5: Success - Show Vendor ID */}
+            {currentStep === 5 && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="space-y-6 text-center"
+              >
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto">
+                  <PartyPopper className="w-8 h-8 text-green-600" />
+                </div>
+
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground">Registration Successful!</h2>
+                  <p className="text-muted-foreground mt-2">Your store has been registered on QuickKart</p>
+                </div>
+
+                <div className="bg-muted/50 rounded-xl p-6 space-y-4">
+                  <p className="text-sm font-medium text-foreground">Your Vendor ID</p>
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-3xl font-bold font-mono text-primary tracking-widest">
+                      {generatedVendorId}
+                    </span>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(generatedVendorId);
+                        toast({ title: "Copied!", description: "Vendor ID copied to clipboard" });
+                      }}
+                      className="p-2 rounded-lg hover:bg-muted transition"
+                    >
+                      <Copy className="w-5 h-5 text-muted-foreground" />
+                    </button>
+                  </div>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <p className="text-sm text-yellow-800 font-medium">⚠️ Save this Vendor ID!</p>
+                    <p className="text-xs text-yellow-700 mt-1">
+                      You'll need this ID to log in to the Vendor Portal. Keep it safe.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 justify-center">
+                  <Link to="/vendor/login">
+                    <Button size="lg">
+                      Go to Vendor Login
+                    </Button>
+                  </Link>
+                  <Link to="/">
+                    <Button variant="outline" size="lg">
+                      Back to Home
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             )}

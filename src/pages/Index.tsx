@@ -171,7 +171,7 @@ const Index = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-12 md:py-16">
+      <section className="py-6 md:py-8">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -195,7 +195,7 @@ const Index = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-12 md:py-16 bg-muted/50">
+      <section className="py-6 md:py-8 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>

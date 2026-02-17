@@ -340,10 +340,10 @@ export function isVendorLoggedIn(): boolean {
     return getVendorSession() !== null;
 }
 
-export function loginVendor(storeId: string, password: string): boolean {
-    if (password !== "vendor123") return false;
-    const store = getStores().find((s) => s.id === storeId);
+export function loginVendor(vendorId: string, password: string): boolean {
+    const store = getStores().find((s) => s.vendorId === vendorId);
     if (!store) return false;
+    if (store.password !== password) return false;
     setItem<VendorSession>(KEYS.vendorSession, {
         storeId: store.id,
         storeName: store.name,
@@ -353,6 +353,51 @@ export function loginVendor(storeId: string, password: string): boolean {
 
 export function logoutVendor(): void {
     localStorage.removeItem(KEYS.vendorSession);
+}
+
+// Generate a unique vendor ID in QK-XXXXX format
+export function generateVendorId(): string {
+    const stores = getStores();
+    let num = 10001 + stores.length;
+    // Ensure uniqueness
+    const existingIds = new Set(stores.map((s) => s.vendorId));
+    while (existingIds.has(`QK-${num}`)) num++;
+    return `QK-${num}`;
+}
+
+// Register a new vendor (called from Become a Seller flow)
+export function registerVendor(data: {
+    name: string;
+    category: string;
+    description?: string;
+    ownerName?: string;
+    email?: string;
+    phone?: string;
+    password: string;
+}): { vendorId: string; storeId: string } {
+    const vendorId = generateVendorId();
+    const storeId = generateId();
+    const newStore: Store = {
+        id: storeId,
+        vendorId,
+        password: data.password,
+        name: data.name,
+        logo: null,
+        distance_km: Math.round(Math.random() * 30 + 1) / 10,
+        rating: 0,
+        review_count: 0,
+        opening_hours: { monday: "09:00-21:00", tuesday: "09:00-21:00" },
+        is_open: true,
+        category: data.category,
+        description: data.description,
+        ownerName: data.ownerName,
+        email: data.email,
+        phone: data.phone,
+    };
+    const stores = getStores();
+    stores.push(newStore);
+    setStores(stores);
+    return { vendorId, storeId };
 }
 
 // ─── Vendor Scoped Queries ──────────────────────────────────
