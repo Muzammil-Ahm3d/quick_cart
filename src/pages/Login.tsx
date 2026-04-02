@@ -67,7 +67,7 @@ const Login = () => {
       setIsLoading(false);
       toast({
         title: "Login successful!",
-        description: "Welcome back to QuickKart",
+        description: "Welcome back to Qwiksy",
       });
       navigate("/");
     }, 1500);
@@ -113,7 +113,7 @@ const Login = () => {
       setIsLoading(false);
       toast({
         title: "Login successful!",
-        description: "Welcome back to QuickKart",
+        description: "Welcome back to Qwiksy",
       });
       navigate("/");
     }, 1500);
@@ -163,7 +163,7 @@ const Login = () => {
                 <span className="text-2xl font-bold text-secondary">Kart</span>
               </Link>
               <h1 className="text-2xl font-bold text-foreground mt-4">Welcome Back</h1>
-              <p className="text-muted-foreground text-sm mt-1">Sign in to your QuickKart account</p>
+              <p className="text-muted-foreground text-sm mt-1">Sign in to your Qwiksy account</p>
             </div>
 
             {/* Login Tabs */}
@@ -418,7 +418,7 @@ const Login = () => {
         >
           <h2 className="text-3xl font-bold mb-4">Shop Local, Get Fast Delivery</h2>
           <p className="text-primary-foreground/80 mb-8">
-            Join millions of happy customers who trust QuickKart for their daily essentials.
+            Join millions of happy customers who trust Qwiksy for their daily essentials.
           </p>
 
           <div className="space-y-6">

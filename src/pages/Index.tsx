@@ -170,9 +170,47 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-6 md:py-8">
-        <div className="container mx-auto px-4">
+      {/* Refined Categories Section */}
+      <section className="relative py-10 md:py-14 overflow-hidden bg-gradient-to-b from-white to-primary/5">
+        {/* Decorative background illustrations */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* Fruits & Beverages Illustrations */}
+          <div className="absolute top-1/4 left-10 opacity-10 rotate-12">
+            <svg className="w-16 h-16 text-cta" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M50 20 Q70 20 80 50 Q75 80 50 80 Q25 80 20 50 Q30 20 50 20" />
+              <path d="M50 10 L50 25" stroke="currentColor" strokeWidth="4" />
+            </svg>
+          </div>
+          
+          <div className="absolute top-1/3 right-12 opacity-10 -rotate-12 translate-y-12">
+            <svg className="w-20 h-20 text-primary" viewBox="0 0 100 100" fill="currentColor">
+              <rect x="30" y="25" width="40" height="60" rx="8" />
+              <path d="M45 15 L55 15 L60 25 L40 25 Z" opacity="0.8" />
+              <circle cx="50" cy="55" r="10" fill="white" opacity="0.3" />
+            </svg>
+          </div>
+
+          <div className="absolute bottom-1/4 left-1/4 opacity-[0.08] rotate-45">
+            <svg className="w-14 h-14 text-green-500" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M20 70 Q40 10 70 70 Z" />
+              <path d="M45 40 Q55 30 65 40" fill="none" stroke="currentColor" strokeWidth="3" />
+            </svg>
+          </div>
+
+          <div className="absolute top-10 left-1/2 -translate-x-1/2 opacity-[0.05]">
+            <div className="flex gap-12">
+              <div className="w-12 h-12 rounded-full border-4 border-cta" />
+              <div className="w-12 h-12 rounded-lg border-4 border-primary rotate-45" />
+            </div>
+          </div>
+
+          {/* Dots Pattern */}
+          <div className="absolute inset-0 opacity-[0.05]" 
+               style={{ backgroundImage: 'radial-gradient(circle, currentColor 1.5px, transparent 1.5px)', backgroundSize: '30px 30px' }}>
+          </div>
+        </div>
+
+        <div className="container relative z-10 mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Shop by Category</h2>
@@ -227,7 +265,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              How QuickKart Works
+              How Qwiksy Works
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Get your essentials delivered in three simple steps
@@ -289,28 +327,93 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Download App CTA */}
-      <section className="py-16 md:py-24 gradient-secondary">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+      {/* Download App CTA - Ultra Compact Version */}
+      <section className="py-3 md:py-6 bg-primary relative overflow-hidden">
+        {/* Background Decorative Elements (Ref: Image 4 style) */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[80px] translate-x-1/4 translate-y-1/4" />
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] border-[40px] border-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16">
+            {/* Text Content - Naukri Style (Ref: Image 2) */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex-1 text-center lg:text-left space-y-3"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary-foreground mb-4">
-                Get the QuickKart App
+              <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-bold tracking-widest uppercase border border-white/20">
+                Exclusive Mobile Access
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                Get the <span className="underline decoration-white/30 underline-offset-8">Qwiksy App</span>
               </h2>
-              <p className="text-lg text-secondary-foreground/80 mb-8">
-                Download now for exclusive deals, faster checkout, and real-time order tracking
+              <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto lg:mx-0">
+                Experience the magic of lightning-fast local delivery. 
+                Get real-time alerts, one-tap ordering, and exclusive deals.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button size="xl" variant="hero" className="min-w-[180px]">
-                  App Store
+              
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
+                {/* App Store Button - Naukri Style */}
+                <Button size="xl" className="bg-white text-primary hover:bg-neutral-100 flex items-center gap-3 px-8 h-16 shadow-2xl transition-transform active:scale-95 group">
+                  <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center text-white font-black text-xl group-hover:scale-110 transition-transform">
+                    A
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] uppercase font-bold text-primary/60 leading-none mb-1">Download on the</p>
+                    <p className="text-lg font-extrabold text-primary leading-none">App Store</p>
+                  </div>
                 </Button>
-                <Button size="xl" variant="hero" className="min-w-[180px]">
-                  Play Store
+
+                {/* Google Play Button - Naukri Style */}
+                <Button size="xl" className="bg-white text-primary hover:bg-neutral-100 flex items-center gap-3 px-8 h-16 shadow-2xl transition-transform active:scale-95 group">
+                  <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center text-white font-black text-xl group-hover:scale-110 transition-transform">
+                    G
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] uppercase font-bold text-primary/60 leading-none mb-1">Get it on</p>
+                    <p className="text-lg font-extrabold text-primary leading-none">Google Play</p>
+                  </div>
                 </Button>
+              </div>
+            </motion.div>
+
+            {/* 3D Animated Mobile Mockup - Resized to be smaller */}
+            <motion.div
+              initial={{ opacity: 0, y: 50, rotateY: 15 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: -15 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, type: "spring" }}
+              className="flex-1 w-full max-w-[210px] perspective-1000 hidden md:block lg:translate-x-12"
+            >
+              <div className="relative aspect-[9/18.5] bg-neutral-900 rounded-[2.5rem] p-2 dark shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border-4 border-neutral-800 transform-gpu transition-all hover:rotate-y-0 duration-500">
+                {/* Device hardware details */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/4 h-6 bg-neutral-900 rounded-b-xl z-20" />
+                
+                {/* Screen Content */}
+                <div className="w-full h-full bg-[#111827] rounded-[2.2rem] overflow-hidden relative flex flex-col pt-10 px-4">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                      <img src="/logo-icon.png" className="w-5 h-5 object-contain" />
+                    </div>
+                    <span className="font-bold text-white/60 text-sm">Qwiksy</span>
+                  </div>
+                  
+                  {/* Mock UI Elements */}
+                  <div className="space-y-4">
+                    <div className="w-full h-12 rounded-xl bg-white/5 animate-pulse" />
+                    <div className="w-full h-24 rounded-2xl bg-white/5" />
+                    <div className="w-full h-24 rounded-2xl bg-white/5" />
+                    <div className="w-full h-24 rounded-2xl bg-white/5" />
+                  </div>
+                  
+                  {/* Reflection */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
+                </div>
               </div>
             </motion.div>
           </div>

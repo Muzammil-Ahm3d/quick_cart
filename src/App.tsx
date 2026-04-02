@@ -24,6 +24,9 @@ import AdminCategoryForm from "./pages/admin/AdminCategoryForm";
 import AdminBanners from "./pages/admin/AdminBanners";
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
 import AdminOrders from "./pages/admin/AdminOrders";
+import AdminVendors from "./pages/admin/AdminVendors";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminReturns from "./pages/admin/AdminReturns";
 
 // Vendor imports
 import VendorLayout from "./components/vendor/VendorLayout";
@@ -72,6 +75,9 @@ const App = () => (
             <Route path="banners" element={<AdminBanners />} />
             <Route path="settings" element={<AdminSiteSettings />} />
             <Route path="orders" element={<AdminOrders />} />
+            <Route path="vendors" element={<AdminVendors />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="returns" element={<AdminReturns />} />
           </Route>
 
           {/* Vendor Routes */}

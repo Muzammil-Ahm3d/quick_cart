@@ -1,4 +1,4 @@
-// localStorage abstraction layer for QuickKart Admin
+// localStorage abstraction layer for Qwiksy Admin
 import { Product, Category, Store, Order } from "@/types";
 import { SiteSettings } from "@/types/siteSettings";
 
@@ -152,7 +152,7 @@ export function setSiteSettings(settings: SiteSettings): void {
 export function getDefaultSiteSettings(): SiteSettings {
     return {
         header: {
-            brandName: "QuickKart",
+            brandName: "Qwiksy",
             logoUrl: "",
             navLinks: [
                 { label: "Home", href: "/", isActive: true },
@@ -162,10 +162,10 @@ export function getDefaultSiteSettings(): SiteSettings {
             ],
         },
         footer: {
-            brandName: "QuickKart",
+            brandName: "Qwiksy",
             tagline: "Empowering Local Stores. Delivering at Speed.",
             phone: "+91 1800-123-4567",
-            email: "support@quickkart.in",
+            email: "support@qwiksy.in",
             address: "Bengaluru, India",
             socialLinks: {
                 facebook: "#",

@@ -3,39 +3,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* QuickKart Design System
+/* Qwiksy Design System
    Motto: "Empowering Local Stores. Delivering at Speed."
-   Colors: Vibrant Orange + Navy Blue
+   Colors: Professional Blue Palette (from logo)
 */
 
 
 
 @layer base {
   :root {
-    /* Primary - Vibrant Green (Zepto-like) */
-    --primary: 142 71% 45%;
+    /* Primary - Professional Metallic Navy Blue (from logo) */
+    --primary: 217 60% 25%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 142 70% 95%;
-    --primary-dark: 142 76% 36%;
-    --primary-hover: 142 70% 40%;
+    --primary-light: 217 60% 95%;
+    --primary-dark: 217 70% 15%;
+    --primary-hover: 217 60% 20%;
 
-    /* Secondary - Navy Blue */
-    --secondary: 207 100% 27%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-light: 201 60% 90%;
-    --secondary-dark: 207 100% 15%;
-    --secondary-hover: 207 100% 20%;
+    /* Secondary - Steel Blue Accent */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 217 60% 25%;
+    --secondary-light: 210 40% 98%;
+    --secondary-dark: 210 20% 90%;
+    --secondary-hover: 210 30% 94%;
 
-    /* CTA - Vibrant Orange */
+    /* CTA - Vibrant Orange (as requested) */
     --cta: 24 95% 53%;
     --cta-foreground: 0 0% 100%;
     --cta-hover: 24 95% 48%;
 
 
-    /* Success - Teal Green */
-    --success: 163 96% 43%;
+    /* Success - Green for Pricing */
+    --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-    --success-light: 163 60% 90%;
+    --success-light: 142 70% 95%;
 
     /* Warning - Golden Yellow */
     --warning: 43 100% 70%;
@@ -47,8 +47,8 @@
     --destructive-foreground: 0 0% 100%;
     --destructive-light: 0 60% 95%;
 
-    /* Backgrounds */
-    --background: 0 0% 97%;
+    /* Backgrounds - Forced to pure white */
+    --background: 0 0% 100%;
     --foreground: 229 23% 23%;
 
     /* Cards */
@@ -101,38 +101,38 @@
   }
 
   .dark {
-    --background: 0 0% 7%;
+    --background: 217 40% 7%;
     --foreground: 0 0% 100%;
 
-    --card: 0 0% 12%;
+    --card: 217 30% 12%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 12%;
+    --popover: 217 30% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 142 71% 45%;
+    --primary: 217 50% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 207 100% 35%;
+    --secondary: 217 40% 25%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 69%;
+    --muted: 217 20% 15%;
+    --muted-foreground: 217 10% 70%;
 
-    --cta: 24 95% 53%;
+    --cta: 217 50% 55%;
     --cta-foreground: 0 0% 100%;
-    --cta-hover: 24 95% 48%;
+    --cta-hover: 217 50% 50%;
 
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 142 71% 45%;
+    --accent: 217 30% 18%;
+    --accent-foreground: 217 50% 45%;
 
     --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 142 71% 45%;
+    --border: 217 20% 18%;
+    --input: 217 20% 18%;
+    --ring: 217 50% 45%;
 
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 95%;
@@ -255,6 +255,15 @@
   /* Focus ring */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* Price Shadow Utility */
+  .price-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
   }
 }
 

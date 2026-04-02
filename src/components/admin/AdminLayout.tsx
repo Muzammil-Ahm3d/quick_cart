@@ -12,6 +12,9 @@ import {
     X,
     ExternalLink,
     ChevronRight,
+    Store,
+    Users,
+    RotateCcw,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -19,10 +22,13 @@ import { logoutAdmin } from "@/lib/store";
 
 const navItems = [
     { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
+    { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
     { label: "Products", href: "/admin/products", icon: Package },
     { label: "Categories", href: "/admin/categories", icon: FolderTree },
+    { label: "Vendors", href: "/admin/vendors", icon: Store },
+    { label: "Users", href: "/admin/users", icon: Users },
+    { label: "Returns & Issues", href: "/admin/returns", icon: RotateCcw },
     { label: "Banners", href: "/admin/banners", icon: Image },
-    { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
     { label: "Site Settings", href: "/admin/settings", icon: Settings },
 ];
 

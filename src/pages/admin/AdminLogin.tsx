@@ -98,11 +98,40 @@ const AdminLogin = () => {
                         </Button>
                     </form>
 
-                    {/* Hint */}
-                    <div className="mt-6 p-3 rounded-lg bg-muted/50 text-center">
-                        <p className="text-xs text-muted-foreground">
-                            Default credentials: <strong>admin</strong> / <strong>admin123</strong>
-                        </p>
+                    {/* Hint & Help */}
+                    <div className="mt-8 pt-6 border-t border-border space-y-4">
+                        <div className="bg-muted/50 rounded-xl p-4 space-y-3">
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
+                                Demo & Help
+                            </p>
+                            <div className="text-xs text-muted-foreground text-center space-y-1">
+                                <p>Default: <strong className="text-foreground">admin</strong> / <strong className="text-foreground">admin123</strong></p>
+                            </div>
+                            <div className="flex gap-2">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="flex-1 text-[10px] h-7"
+                                    onClick={() => {
+                                        setUsername("admin");
+                                        setPassword("admin123");
+                                    }}
+                                >
+                                    Auto-fill Demo
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="flex-1 text-[10px] h-7 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                    onClick={() => {
+                                        localStorage.clear();
+                                        window.location.reload();
+                                    }}
+                                >
+                                    Reset & Refresh
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </motion.div>

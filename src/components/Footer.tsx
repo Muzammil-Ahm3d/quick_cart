@@ -41,14 +41,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-secondary text-secondary-foreground">
+    <footer className="bg-primary text-primary-foreground">
       {/* Newsletter Section */}
-      <div className="border-b border-secondary-light/20">
+      <div className="border-b border-white/10">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="text-lg font-semibold">Subscribe to our newsletter</h3>
-              <p className="text-sm text-secondary-foreground/80">
+              <h3 className="text-lg font-semibold text-white">Subscribe to our newsletter</h3>
+              <p className="text-sm text-white/70">
                 Get updates on exclusive deals and new arrivals
               </p>
             </div>
@@ -56,9 +56,9 @@ const Footer = () => {
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full md:w-64 bg-secondary-light/20 border-0 text-secondary-foreground placeholder:text-secondary-foreground/60"
+                className="w-full md:w-64 bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:ring-white/30"
               />
-              <Button variant="default" className="shrink-0">
+              <Button variant="default" className="shrink-0 bg-white text-primary hover:bg-neutral-100 font-bold border-0">
                 Subscribe
               </Button>
             </div>
@@ -71,26 +71,36 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">Q</span>
+            <Link to="/" className="flex items-center gap-3 mb-6 group">
+              <div className="relative h-28 md:h-32 flex items-center transition-transform duration-300 group-hover:scale-105">
+                <img 
+                  src="/logo-full.jpeg" 
+                  alt="Qwiksy Full Logo" 
+                  className="h-full object-contain rounded-2xl shadow-2xl border-2 border-white/20"
+                />
               </div>
-              <span className="text-2xl font-bold">QuickKart</span>
             </Link>
-            <p className="text-sm text-secondary-foreground/80 mb-4">
-              Empowering Local Stores. Delivering at Speed.
+            <p className="text-sm text-white/70 mb-6 leading-relaxed">
+              Empowering Local Stores. <br />
+              Delivering at Speed.
             </p>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-primary" />
+            <div className="space-y-3 text-sm">
+              <div className="flex items-center gap-3 text-white/80 transition-colors hover:text-white">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                  <Phone className="w-4 h-4" />
+                </div>
                 <span>+91 1800-123-4567</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-primary" />
-                <span>support@quickkart.in</span>
+              <div className="flex items-center gap-3 text-white/80 transition-colors hover:text-white">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span>support@qwiksy.in</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-primary" />
+              <div className="flex items-center gap-3 text-white/80 transition-colors hover:text-white">
+                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                  <MapPin className="w-4 h-4" />
+                </div>
                 <span>Bengaluru, India</span>
               </div>
             </div>
@@ -98,13 +108,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Company</h4>
+            <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -115,13 +125,13 @@ const Footer = () => {
 
           {/* Categories Links */}
           <div>
-            <h4 className="font-semibold mb-4">Categories</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Categories</h4>
+            <ul className="space-y-3">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -132,13 +142,13 @@ const Footer = () => {
 
           {/* Support Links */}
           <div>
-            <h4 className="font-semibold mb-4">Support</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Support</h4>
+            <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -149,13 +159,13 @@ const Footer = () => {
 
           {/* Partner Links */}
           <div>
-            <h4 className="font-semibold mb-4">Partner With Us</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-xs">Partner</h4>
+            <ul className="space-y-3">
               {footerLinks.partner.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -167,11 +177,11 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-secondary-light/20">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-secondary-foreground/80">
-              © {currentYear} QuickKart. All rights reserved.
+      <div className="border-t border-white/5">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="text-sm text-white/40 font-medium">
+              © {currentYear} Qwiksy. Empowering Local Commerce.
             </p>
 
             {/* Social Links */}
@@ -181,19 +191,19 @@ const Footer = () => {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="p-2 rounded-full bg-secondary-light/20 hover:bg-primary hover:text-primary-foreground transition-colors"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300"
                 >
-                  <social.icon className="w-4 h-4" />
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
 
-            {/* App Download Buttons */}
-            <div className="flex items-center gap-2">
-              <Button variant="outline" size="sm" className="border-secondary-foreground/30 text-secondary-foreground hover:bg-secondary-light/20">
+            {/* App Download Buttons - Small version */}
+            <div className="flex items-center gap-3">
+              <Button size="sm" className="bg-white/10 text-white hover:bg-white/20 border-0 h-9 px-4 font-bold text-xs ring-1 ring-white/20">
                 App Store
               </Button>
-              <Button variant="outline" size="sm" className="border-secondary-foreground/30 text-secondary-foreground hover:bg-secondary-light/20">
+              <Button size="sm" className="bg-white/10 text-white hover:bg-white/20 border-0 h-9 px-4 font-bold text-xs ring-1 ring-white/20">
                 Play Store
               </Button>
             </div>

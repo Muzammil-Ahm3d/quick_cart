@@ -679,7 +679,7 @@ const BecomeSeller = () => {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-success mt-0.5" />
-                      You prepay wallet balance to QuickKart
+                      You prepay wallet balance to Qwiksy
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-success mt-0.5" />
@@ -734,7 +734,7 @@ const BecomeSeller = () => {
                     onCheckedChange={(checked) => setAgreeTerms(checked as boolean)}
                   />
                   <label htmlFor="terms" className="text-sm cursor-pointer">
-                    I agree to QuickKart's{" "}
+                    I agree to Qwiksy's{" "}
                     <a href="/terms-of-service" className="text-primary hover:underline">
                       Terms of Service
                     </a>{" "}
@@ -768,7 +768,7 @@ const BecomeSeller = () => {
 
                 <div>
                   <h2 className="text-2xl font-bold text-foreground">Registration Successful!</h2>
-                  <p className="text-muted-foreground mt-2">Your store has been registered on QuickKart</p>
+                  <p className="text-muted-foreground mt-2">Your store has been registered on Qwiksy</p>
                 </div>
 
                 <div className="bg-muted/50 rounded-xl p-6 space-y-4">
@@ -821,9 +821,9 @@ const BecomeSeller = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-md text-primary-foreground"
         >
-          <h2 className="text-3xl font-bold mb-4">Why Become a QuickKart Seller?</h2>
+          <h2 className="text-3xl font-bold mb-4">Why Become a Qwiksy Seller?</h2>
           <p className="text-primary-foreground/80 mb-8">
-            Join thousands of local sellers who are growing their business with QuickKart.
+            Join thousands of local sellers who are growing their business with Qwiksy.
           </p>
 
           <div className="space-y-6">

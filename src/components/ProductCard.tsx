@@ -113,8 +113,8 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist, onClick }: Produc
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <div className="bg-primary px-2 py-0.5 rounded-md">
-            <span className="text-sm font-bold text-primary-foreground">₹{product.price}</span>
+          <div className="bg-success px-2.5 py-0.5 rounded-md shadow-[0_2px_10px_-3px_rgba(34,197,94,0.4)]">
+            <span className="text-sm font-bold text-white">₹{product.price}</span>
           </div>
           {product.original_price && (
             <span className="text-xs text-muted-foreground line-through">

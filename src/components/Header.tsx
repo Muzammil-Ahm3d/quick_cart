@@ -42,12 +42,16 @@ const Header = ({ cartItemCount = 0, wishlistCount = 0 }: HeaderProps) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">Q</span>
+            <Link to="/" className="flex items-center gap-3 group mr-8 shrink-0">
+              <div className="relative h-14 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <img 
+                  src="/logo-icon.png" 
+                  alt="Qwiksy Logo" 
+                  className="h-full object-contain"
+                />
               </div>
-              <span className="text-xl font-bold text-foreground hidden sm:block">
-                Quick<span className="text-primary">Kart</span>
+              <span className="text-2xl font-bold tracking-tight text-foreground hidden sm:block">
+                Qwik<span className="text-primary font-extrabold italic">sy</span>
               </span>
             </Link>
 
@@ -114,7 +118,7 @@ const Header = ({ cartItemCount = 0, wishlistCount = 0 }: HeaderProps) => {
 
               {/* Login Button */}
               <Link to="/login" className="hidden sm:block">
-                <Button variant="outline" size="sm">
+                <Button variant="default" size="sm" className="px-6 shadow-sm">
                   Login
                 </Button>
               </Link>
@@ -170,10 +174,8 @@ const Header = ({ cartItemCount = 0, wishlistCount = 0 }: HeaderProps) => {
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-4 border-b border-border">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-                      <span className="text-primary-foreground font-bold text-lg">Q</span>
-                    </div>
-                    <span className="text-lg font-bold">QuickKart</span>
+                    <img src="/logo-icon.png" alt="Qwiksy" className="w-8 h-8 object-contain" />
+                    <span className="text-xl font-bold">Qwiksy</span>
                   </div>
                   <button onClick={() => setIsMenuOpen(false)} className="p-2">
                     <X className="w-5 h-5" />

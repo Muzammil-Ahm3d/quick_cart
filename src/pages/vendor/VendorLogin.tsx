@@ -102,11 +102,47 @@ const VendorLogin = () => {
                     </form>
 
                     {/* Register link */}
-                    <div className="mt-6 text-center text-sm text-muted-foreground">
-                        Don't have a Vendor ID?{" "}
-                        <Link to="/become-seller" className="text-primary font-medium hover:underline">
-                            Register as a Seller
-                        </Link>
+                    <div className="mt-8 pt-6 border-t border-border space-y-4">
+                        <div className="text-center text-sm text-muted-foreground">
+                            Don't have a Vendor ID?{" "}
+                            <Link to="/become-seller" className="text-primary font-medium hover:underline">
+                                Register as a Seller
+                            </Link>
+                        </div>
+
+                        {/* Help / Demo section */}
+                        <div className="bg-muted/50 rounded-xl p-4 space-y-3">
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
+                                Demo & Help
+                            </p>
+                            <div className="text-xs text-muted-foreground text-center space-y-1">
+                                <p>Default: <strong className="text-foreground">QK-10001</strong> / <strong className="text-foreground">vendor123</strong></p>
+                            </div>
+                            <div className="flex gap-2">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="flex-1 text-[10px] h-7"
+                                    onClick={() => {
+                                        setVendorId("QK-10001");
+                                        setPassword("vendor123");
+                                    }}
+                                >
+                                    Auto-fill Demo
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="flex-1 text-[10px] h-7 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                    onClick={() => {
+                                        localStorage.clear();
+                                        window.location.reload();
+                                    }}
+                                >
+                                    Reset & Refresh
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </motion.div>

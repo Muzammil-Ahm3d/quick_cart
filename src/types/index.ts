@@ -1,4 +1,4 @@
-// Product types for QuickKart
+// Product types for Qwiksy
 export interface Product {
   id: string;
   name: string;
